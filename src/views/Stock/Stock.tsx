@@ -19,7 +19,7 @@ const Stock = () => {
     <Text fontWeight={"bolder"} fontSize="3xl">${location?.state?.stock?.price}</Text>
     <Text fontSize={"sm"} color={location?.state?.stock?.color} fontWeight={"bold"}>{location?.state?.stock?.valueChange}%</Text>
   </Stack>
-  <Stack mt={24}>
+  <Stack mt={16}>
   <Line options={StockOptions} data={location?.state?.data}/>
   </Stack>
 
@@ -39,7 +39,7 @@ const Stock = () => {
     </Stack>
   </Stack>
 
-  <Button backgroundColor='black' color="white" mt={20} w="100%">Add to Portfolio</Button>
+  <Button backgroundColor='black' color="white" mt={8} mb={4} w="100%">Add to Portfolio</Button>
     </Box>
   )
 }
