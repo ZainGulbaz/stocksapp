@@ -19,6 +19,7 @@ const Market = () => {
   const marketThemeColor = "#1877f2";
   const [stocks,setStocks]=useState<Stock[]|[]>([]);
   const [isLoader,setIsLoader]=useState(true);
+  const[searchText,setSearchText]=useState("");
 
   useEffect(()=>{
  getStocksData().then(res=>{setStocks(res);
@@ -28,8 +29,11 @@ setIsLoader(false);}).catch(err=>{
   console.log(err);
  })
   },[]);
+
+  const handleSearch=(event: React.ChangeEvent<HTMLInputElement>)=>setSearchText(event.target.value);
+  
   return ( 
-    <Box>
+    <Box overflow={"hidden"}>
       <Box
         className="HeaderBox"
         bg={marketThemeColor}
@@ -64,6 +68,7 @@ setIsLoader(false);}).catch(err=>{
               placeholder="Search Markets"
               bg={"blue.400"}
               borderColor={marketThemeColor}
+              onChange={handleSearch}
             />
           </InputGroup>
 
@@ -76,8 +81,8 @@ setIsLoader(false);}).catch(err=>{
         </Stack>
         </Box>    
       </Box>
-      <Box justifyContent={"center"} alignItems={"center"}>
-       {(isLoader)?<Loader/>:stocks?.map(stock=><Tab stock={stock}/>)}
+      <Box justifyContent={"center"} alignItems={"center"} style={{overflowY:"auto",whiteSpace:"nowrap"}}>
+          {(isLoader)?<Loader/>:stocks?.filter(stock=>stock?.name?.startsWith(searchText))?.map(stock=><Tab stock={stock}/>)}  
       </Box>
       
     </Box>
