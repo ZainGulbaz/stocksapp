@@ -67,10 +67,12 @@ setIsLoader(false);}).catch(err=>{
             />
           </InputGroup>
 
-          <Stack direction="row" mt={4} color="gray.300" gap={4} align={"flex-start"}>
+          <Stack direction="row" mt={4} color="gray.300" gap={4} align={"flex-start"} style={{overflow:"auto",whiteSpace:"nowrap"}} className="ScrollBar">
             <Text cursor={"pointer"} color={"white"}>Main Market </Text>
             <Text cursor={"pointer"}>Junior Market</Text>
+            <Text cursor={"pointer"}>Funds</Text>
             <Text cursor={"pointer"}>FX Rates</Text>
+            <Text cursor={"pointer"}>Seconday Market</Text>
         </Stack>
         </Box>    
       </Box>

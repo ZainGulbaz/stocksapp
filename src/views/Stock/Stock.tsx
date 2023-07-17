@@ -39,7 +39,7 @@ const Stock = () => {
     </Stack>
   </Stack>
 
-  <Button backgroundColor='black' color="white" mt={8} mb={4} w="100%">Add to Portfolio</Button>
+  <Button backgroundColor='black' color="white" mt={4} mb={8} w="100%">Add to Portfolio</Button>
     </Box>
   )
 }
