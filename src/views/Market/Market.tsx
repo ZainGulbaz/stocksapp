@@ -13,13 +13,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Tab from "./Tab";
 import { getStocksData } from "./Api";
 import { Stock } from "../../utils/Interface";
+import Loader from "../../components/loader/loader";
+
 const Market = () => {
   const marketThemeColor = "#1877f2";
   const [stocks,setStocks]=useState<Stock[]|[]>([]);
+  const [isLoader,setIsLoader]=useState(true);
 
   useEffect(()=>{
- getStocksData().then(res=>setStocks(res)).catch(err=>{
+ getStocksData().then(res=>{setStocks(res);
+setIsLoader(false);}).catch(err=>{
   alert("error in fetching stocks");
+  setIsLoader(false);
   console.log(err);
  })
   },[]);
@@ -69,8 +74,8 @@ const Market = () => {
         </Stack>
         </Box>    
       </Box>
-      <Box>
-       {stocks?.map(stock=><Tab stock={stock}/>)}
+      <Box justifyContent={"center"} alignItems={"center"}>
+       {(isLoader)?<Loader/>:stocks?.map(stock=><Tab stock={stock}/>)}
       </Box>
       
     </Box>

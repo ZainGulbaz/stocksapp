@@ -11,7 +11,9 @@ import {
   } from 'chart.js';
   import { Line } from 'react-chartjs-2';
 import { Stock } from "../../utils/Interface";
-  
+import { options } from "../../utils/Constants";
+import {useNavigate} from "react-router-dom";
+
 
   ChartJS.register(
     CategoryScale,
@@ -25,9 +27,11 @@ import { Stock } from "../../utils/Interface";
   
 
 const Tab = ({stock}:{stock:Stock}) => {
+
+    let navigate=useNavigate();
    
       
-      const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+      const labels = ['March', 'April', 'May', 'June', 'July'];
     
        const data = {
         labels,
@@ -41,7 +45,13 @@ const Tab = ({stock}:{stock:Stock}) => {
         ],
       };
   return (
-    <Flex bg={"white"} p={4} borderBottom={"2px"} borderColor={"gray.200"} direction={"row"} justifyContent={"space-around"} w="full" align="center" cursor={"pointer"}>
+    <Flex bg={"white"} p={4} borderBottom={"2px"} borderColor={"gray.200"} direction={"row"} justifyContent={"space-around"} w="full" align="center" cursor={"pointer"} onClick={()=>navigate("/stock",{
+        state:{
+            options,
+            data,
+            stock
+        }
+    })}>
             <VStack gap={1}>
 <Text fontWeight={"bold"} color="black" >{stock?.name} <Text fontWeight={"light"} fontSize="xs" mt={-1}> {stock?.companyName}</Text></Text>
 
@@ -52,7 +62,6 @@ const Tab = ({stock}:{stock:Stock}) => {
             </VStack>
             <Text fontWeight={"bold"} color="black" >${stock?.price} <Text fontSize="xs" mt={-1} color={stock?.color}>{stock?.valueChange}%</Text></Text>
             <VStack>
-
                 </VStack>
     </Flex>
   )
