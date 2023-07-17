@@ -2,7 +2,7 @@
 # Stocks APP Demo
 
 This app is build in pure REACT JS by using following tools:\
-1- Tailwind CSS \
+1- Chakra UI \
 2- Chart JS v2 \
 3- Typescript
 
